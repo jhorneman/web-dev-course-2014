@@ -21,7 +21,7 @@
           <h1>Web development course 2014</h1>
           <h2>Materials for a course on web development for game programmers.</h2>
           {% if page.url != 'index.html' %}
-          <p>To the <a href="index.html">index</a>.</p>
+          <p>To the <a href="index.html">index</a>. {{ page.url }} <br/> {{page.path }}</p>
           {% endif %}
         </header>
 
