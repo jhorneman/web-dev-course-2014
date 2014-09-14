@@ -7,4 +7,4 @@ layout: default
 
 This is the index
 
-[Here](installing_python.md) you can read about installing Python
+[Here](installing_python.html) you can read about installing Python
