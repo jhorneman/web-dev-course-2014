@@ -1,6 +1,6 @@
 ---
 title: Installing Python (on Windows)
-layout: post
+layout: default
 ---
 
 # Hello world
