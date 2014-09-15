@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}A very simple blog{% endblock %}
+{% block content %}
+{% for post in posts %}
+<h2>{{ post.title }}</h2>
+<p>By {{ post.author_name }}.</p>
+<p>{{ post.content }}</p>
+{% endfor %}
+{% endblock %}
