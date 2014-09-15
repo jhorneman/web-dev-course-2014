@@ -13,6 +13,10 @@ The [Python docs](https://docs.python.org/2/).
 
 The [Flask docs](http://flask.pocoo.org/docs/0.10/).
 
+## Jinja 2
+
+The [Jinja 2 docs](http://jinja.pocoo.org/docs/dev/templates/).
+
 ## SQLite
 
 The [SQLite docs](http://www.sqlite.org/docs.html).
