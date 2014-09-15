@@ -1,0 +1,4 @@
+name: Web development course 2014
+description: Materials for a course on web development for game programmers.
+safe: true
+exclude: [code]
