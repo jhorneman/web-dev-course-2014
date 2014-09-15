@@ -7,9 +7,9 @@ layout: default
 
 [How to install Python on Windows](installing_python.html) (for this course).
 
+[Useful links](useful_links.html).
+
 
 # Ignore this
-
-Some helpful links for me that you won't need:
 
 [Using GitHub Pages](using_github_pages.html) - in case I forget how this system works.
