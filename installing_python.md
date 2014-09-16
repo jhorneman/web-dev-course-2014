@@ -21,7 +21,7 @@ Add this to your PATH environment variable:
 
     C:\Python27\;C:\Python27\Scripts\
 
-Download and run the latest version of Setuptools for Windows [here](ez_setup.py). We only need it to install pip, a better package maanger. Don't ask.
+Download and run the latest version of Setuptools for Windows [here](https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py). We only need it to install pip, a better package maanger. Don't ask.
 
 Download and run the Python script [here](https://raw.github.com/pypa/pip/master/contrib/get-pip.py) to install pip.
 
