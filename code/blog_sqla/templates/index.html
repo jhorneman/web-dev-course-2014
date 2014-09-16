@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}A very simple blog{% endblock %}
+{% block content %}
+{% for post in posts %}
+<h2><a href="{{ url_for('single_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+<p>By {{ post.author.name }}.</p>
+<p>{{ post.content }}</p>
+{% endfor %}
+{% endblock %}
