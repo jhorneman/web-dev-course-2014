@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import *
 from flask_debugtoolbar import DebugToolbarExtension
 
 
@@ -12,7 +13,7 @@ toolbar = DebugToolbarExtension(app)
 
 @app.route('/')
 def index():
-    posts = Post.query.all()
+    posts = Post.query.join(Author).options(joinedload('author')).all()
     return render_template('index.html', posts=posts)
 
 
