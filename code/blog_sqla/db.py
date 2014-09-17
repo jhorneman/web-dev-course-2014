@@ -1,7 +1,7 @@
 import os
 import re
 import codecs
-from high_score import db
+from blog import db
 
 
 class Author(db.Model):
