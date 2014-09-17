@@ -8,6 +8,8 @@ layout: default
 * [Python docs](https://docs.python.org/2/)
 * [Flask docs](http://flask.pocoo.org/docs/0.10/)
 * [Jinja 2 docs](http://jinja.pocoo.org/docs/dev/templates/)
+* [Flask-SQLAlchemy docs](https://pythonhosted.org/Flask-SQLAlchemy/index.html)
+* [SQLAlchemy docs](http://docs.sqlalchemy.org/en/rel_0_9/)
 * [SQLite docs](http://www.sqlite.org/docs.html)
 * [MDN](https://developer.mozilla.org/en-US/docs/Web) (Mozilla Developer Network) - for HTML, CSS, JavaScript, the DOM
 * [jQuery docs](http://api.jquery.com/)
