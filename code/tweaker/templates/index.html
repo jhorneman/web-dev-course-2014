@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Game data tweaker</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='tweaker.css') }}">
+</head>
+<body>
+  <div class="container">
+  	<h1>Important game data</h1>
+  	<div id="tweak-area"></div>
+  </div>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="{{ url_for('static', filename='tweaker.js') }}"></script>
+</body>
+</html>

@@ -20,9 +20,22 @@ test_data = OrderedDict([
 app = Flask(__name__)
 
 
+@app.route('/')
+def index():
+  return render_template('index.html')
+
 @app.route('/api/get')
 def get_data():
     return jsonify(test_data)
+
+@app.route('/api/set', methods=['POST'])
+def set_data():
+    propertyName = request.form['propertyName']
+    if propertyName in test_data:
+        test_data[propertyName] = float(request.form['newValue'])
+        return ""
+    else:
+        abort(401)
 
 
 app.debug = True

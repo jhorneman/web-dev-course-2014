@@ -1,0 +1,11 @@
+
+#tweak-area span {
+	display: inline-block;
+	width: 200px;
+}
+
+#tweak-area input {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+}
