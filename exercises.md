@@ -10,7 +10,7 @@ Comme dans les annees 80, un "livre" virtuel avec des paragraphes et des choix q
 
 ### Client (dans le browser)
 
-Le joueur peut jouer le jeu dans le browser. Elle voit le paragraphe et les choix actuels. Quand elle click sur un choix, elle avance vers le paragraphe qui correspond a ce choix.
+Le joueur peut jouer le jeu dans le browser. Elle voit le paragraphe et les choix actuels. Quand il click sur un choix, il avance vers le paragraphe qui correspond a ce choix.
 
 ### Serveur (en Python)
 
@@ -56,6 +56,16 @@ L'utilisateur peut definir le livre, par exemple en changeant les fichiers qui s
 - Le format YAML est bien pour les meta-donnees, mais il y aussi XML ou JSON.
 - Regardez Heroku pour mettre le serveur sur internet.
 
+### Liens
+
+Ce genre de jeu, ca se joue encore? Oui! Voici quelques examples:
+
+- Les [jeux](http://twinehub.weebly.com/) fait avec [Twine](http://twinery.org/).
+- [howling dogs](http://aliendovecote.com/uploads/twine/howlingdogs/howlingdogs.html), un jeu indie qui a gagné des prix.
+- Les jeux de [Inkle Studios](http://www.inklestudios.com/).
+- Les jeux de [Choice of Games](https://www.choiceofgames.com/).
+
+Bien sur, ca sont en partie des jeux commerciaux developpés avec plus de moyens que vous, mais c'est juste pour montrer que c'est un type de jeu qui reste populaire aujourd'hui.
 
 ## Option 2: Jeu d'arcade simple dans le browser avec high scores
 
@@ -63,7 +73,7 @@ Un jeu d'arcade simple, genre Breakout, qu'on peut jouer dans le browser, avec u
 
 ### Client (dans le browser)
 
-Le joueur peut jouer un jeu d'arcade simple dans le browser. Quand le jeu est terminé elle peut entrer son nom pour ajouter son score dans la liste des high scores, qui est affiché.
+Le joueur peut jouer un jeu d'arcade simple dans le browser. Quand le jeu est terminé il peut entrer son nom pour ajouter son score dans la liste des high scores, qui est affiché.
 
 ### Serveur (en Python)
 
