@@ -1,4 +1,7 @@
-
+---
+title: Exercises
+layout: default
+---
 # Exercises
 
 ## Option 1: "Livre dont vous etes êtes le héros", en ligne
