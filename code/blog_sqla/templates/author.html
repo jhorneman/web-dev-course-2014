@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}All posts by {{ author.name }}{% endblock %}
+{% block content %}
+{% for post in posts %}
+<h2><a href="{{ url_for('single_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+<p>By {{ author.name }}, in the category <a href="{{ url_for('category', category_id=post.category.id) }}">{{ post.category.name }}</a>.</p>
+<p>{{ post.content }}</p>
+{% endfor %}
+<p><a href="{{ url_for('index') }}">View all posts.</a></p>
+{% endblock %}

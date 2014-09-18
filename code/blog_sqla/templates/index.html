@@ -3,7 +3,7 @@
 {% block content %}
 {% for post in posts %}
 <h2><a href="{{ url_for('single_post', post_id=post.id) }}">{{ post.title }}</a></h2>
-<p>By {{ post.author.name }}.</p>
+<p>By <a href="{{ url_for('author', author_id=post.author.id) }}">{{ post.author.name }}</a>, in the category <a href="{{ url_for('category', category_id=post.category.id) }}">{{ post.category.name }}</a>.</p>
 <p>{{ post.content }}</p>
 {% endfor %}
 {% endblock %}
