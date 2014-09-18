@@ -1,32 +1,11 @@
 import os
 import re
 import codecs
-from blog import db
+from blog import create_app
+from models import Post, Author, Category
 
 
-class Author(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    posts = db.relationship('Post', backref='author',
-                             lazy='dynamic')
-
-
-class Category(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    posts = db.relationship('Post', backref='category',
-                             lazy='dynamic')
-
-
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String)
-    content = db.Column(db.String)
-    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
-
-
-def create_db():
+def create_db(db):
     db.drop_all()
     db.create_all()
 
@@ -57,3 +36,9 @@ def create_db():
                 print "Couldn't parse line."
 
     db.session.commit()
+
+
+if __name__ == "__main__":
+    app = create_app()
+    with app.app_context():
+        create_db(app.db)
