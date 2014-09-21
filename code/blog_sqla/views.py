@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, jsonify
 from sqlalchemy.orm import *
 from blog import app
 from models import Post, Author, Category
@@ -28,3 +28,13 @@ def category(category_id):
     category = Category.query.get_or_404(category_id)
     posts = Post.query.filter(Post.category_id == category_id).all()
     return render_template('category.html', category=category, posts=posts)
+
+
+@app.route('/gen')
+def gen():
+    return render_template('gen.html')
+
+
+@app.route('/api/posts')
+def api():
+    pass

@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block title %}A very simple blog{% endblock %}
+{% block content %}
+	<div id="posts"></div>
+  	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  	<script src="{{ url_for('static', filename='gen.js') }}"></script>
+{% endblock %}
