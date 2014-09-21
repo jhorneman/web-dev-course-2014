@@ -18,11 +18,8 @@ class BlogTestCase(unittest.TestCase):
 
     def test_index_page(self):
         rv = self.client.get('/')
-        assert rv.data.count("in the category") == 4
-
-    def test_single_post_page(self):
-        rv = self.client.get('/post/1')
         assert "Problems that aren’t actually solvable" in rv.data
+        assert rv.data.count("in the category") == 4
 
     def test_category_404(self):
         rv = self.client.get('/category/10')
