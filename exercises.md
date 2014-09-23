@@ -64,8 +64,9 @@ Ce genre de jeu, ca se joue encore? Oui! Voici quelques examples:
 - [howling dogs](http://aliendovecote.com/uploads/twine/howlingdogs/howlingdogs.html), un jeu indie qui a gagné des prix.
 - Les jeux de [Inkle Studios](http://www.inklestudios.com/).
 - Les jeux de [Choice of Games](https://www.choiceofgames.com/).
+- [Coin of Destiny](http://molyjam12.herokuapp.com), le jeu que j'avais programmé avec Python et Flask en 48 heures pour un game jam.
 
-Bien sur, ca sont en partie des jeux commerciaux developpés avec plus de moyens que vous, mais c'est juste pour montrer que c'est un type de jeu qui reste populaire aujourd'hui.
+Bien sur, ces sont en partie des jeux commerciaux developpés avec plus de moyens que vous, mais c'est juste pour montrer que c'est un type de jeu qui reste populaire aujourd'hui.
 
 ## Option 2: Jeu d'arcade simple dans le browser avec high scores
 
