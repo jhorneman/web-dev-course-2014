@@ -1,4 +1,4 @@
-from flask import render_template, jsonify
+from flask import render_template, jsonify, url_for
 from sqlalchemy.orm import *
 from blog import app
 from models import Post, Author, Category
@@ -32,9 +32,50 @@ def category(category_id):
 
 @app.route('/gen')
 def gen():
-    return render_template('gen.html')
+    # return render_template('gen.html')
+    # return render_template('gen_with_handlebars.html')
+    return render_template('gen_with_localstorage.html')
 
 
 @app.route('/api/posts')
 def api():
-    pass
+    posts = Post.query.join(Author).all()
+
+    post_ids = [post.id for post in posts]
+    author_ids = set([post.author.id for post in posts])
+    category_ids = set([post.category.id for post in posts])
+
+    authors = Author.query.\
+        filter(Author.id.in_(author_ids)).\
+        all()
+
+    authors = {author.id: dict(
+        name=author.name,
+        url=url_for('author', author_id=post.author.id)
+    ) for author in authors}
+
+    categories = Category.query.\
+        filter(Category.id.in_(category_ids)).\
+        all()
+
+    categories = {category.id : dict(
+        name=category.name,
+        url=url_for('category', category_id=post.category.id)
+    ) for category in categories}
+
+    posts = {post.id : dict(
+        id=post.id,
+        title=post.title,
+        content=post.content,
+        author_id=post.author.id,
+        category_id=post.category.id,
+        url=url_for('single_post', post_id=post.id)
+    ) for post in posts}
+
+    data = {
+        'authors': authors,
+        'categories': categories,
+        'posts': posts
+    }
+
+    return jsonify(data)
