@@ -39,7 +39,7 @@ def gen():
 
 @app.route('/api/posts')
 def api():
-    posts = Post.query.join(Author).all()
+    posts = Post.query.limit(2).all()
 
     post_ids = [post.id for post in posts]
     author_ids = set([post.author.id for post in posts])
