@@ -16,3 +16,4 @@ layout: default
 * [Handlebars docs](http://handlebarsjs.com/)
 * [Bootstrap](http://getbootstrap.com/)
 * [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+* [Requests](http://docs.python-requests.org/en/latest/)
