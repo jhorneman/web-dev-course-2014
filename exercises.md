@@ -4,6 +4,8 @@ layout: default
 ---
 # Les Exercises
 
+<p style="font-size:larger; color:red">ENVOYEZ VOS FICHIERS ZIP A JURIE@JURIE.ORG LE MATIN DU LUNDI LE 28 SEPTEMBRE</p>
+
 ## "Livre dont vous etes êtes le héros", en ligne
 
 Comme dans les annees 80, un "livre" virtuel avec des paragraphes et des choix qui menent vers des autres paragraphes. L'histoire commence avec le paragraphe de debut et se finit par un paragraphe d'échec ou de victoire.
