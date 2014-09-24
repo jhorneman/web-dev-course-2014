@@ -11,19 +11,28 @@ def create_db(db):
 
     with codecs.open('data' + os.sep + 'authors.txt', 'r', 'utf-8') as f:
         for data in f.readlines():
+            data = data.strip()
+            if not data:
+                continue
             new_author = Author()
-            new_author.name = data.strip()
+            new_author.name = data
             db.session.add(new_author)
 
     with codecs.open('data' + os.sep + 'categories.txt', 'r', 'utf-8') as f:
         for data in f.readlines():
+            data = data.strip()
+            if not data:
+                continue
             new_category = Category()
-            new_category.name = data.strip()
+            new_category.name = data
             db.session.add(new_category)
 
     with codecs.open('data' + os.sep + 'posts.txt', 'r', 'utf-8') as f:
         regex = re.compile(r'^(\d+),\s*(\d+),\s*"(.*)",\s*"(.*)"')
         for data in f.readlines():
+            data = data.strip()
+            if not data:
+                continue
             post_data = regex.match(data)
             if post_data:
                 new_post = Post()
