@@ -90,6 +90,7 @@ Vous pouvez utiliser [ce lien](http://api.openweathermap.org/data/2.5/find?q=Lyo
 
 ### Points bonus
 
+- Reactions correctes sur des problemes avec l'API.
 - Une page jolie.
 - La page montre plus de données que juste la temperature.
 - Des moyens qui permettent l'utilisateur de parametriser les données affichées (metrique/imperial, lieux différents, etc.)
