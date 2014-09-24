@@ -99,7 +99,5 @@ Vous pouvez utiliser [ce lien](http://api.openweathermap.org/data/2.5/find?q=Lyo
 ### Astuces
 
 - Cette approche pour charger du code Javascript ne marche plus pour une page sans serveur:
-
-	```<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>```
-
+```<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>```
 - Nous avons déja fait des choses tres similaires dans le projet blog_sqla et tweaker.
