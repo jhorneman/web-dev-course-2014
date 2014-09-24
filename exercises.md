@@ -2,9 +2,9 @@
 title: Exercises
 layout: default
 ---
-# Exercises
+# Les Exercises
 
-## Option 1: "Livre dont vous etes êtes le héros", en ligne
+## "Livre dont vous etes êtes le héros", en ligne
 
 Comme dans les annees 80, un "livre" virtuel avec des paragraphes et des choix qui menent vers des autres paragraphes. L'histoire commence avec le paragraphe de debut et se finit par un paragraphe d'échec ou de victoire.
 
@@ -22,7 +22,7 @@ L'utilisateur peut definir le livre, par exemple en changeant les fichiers qui s
 
 ### A livrer
 
-- Le code et toutes les donnees.
+- Le code complet et toutes les donnees (dans un fichier ZIP, envoyé a jurie@jurie.org).
 - Je peux executer le code moi-meme.
 - Je n'arrive pas a faire planter le code facilement.
 - Je peux modifier les donnees et faire mon propre livre.
@@ -31,10 +31,10 @@ L'utilisateur peut definir le livre, par exemple en changeant les fichiers qui s
 
 ### Ce que je regarderai
 
-- Est-ce que ca marche
+- Est-ce que ca marche (dans Firefox et Chrome).
 - Est-ce que vous faites ce que j'ai dit :)
-- Architecture et qualité du code
-- Qualité > Quantité
+- Architecture et qualité du code.
+- Qualité > Quantité.
 
 ### Points bonus
 
@@ -68,44 +68,38 @@ Ce genre de jeu, ca se joue encore? Oui! Voici quelques examples:
 
 Bien sur, ces sont en partie des jeux commerciaux developpés avec plus de moyens que vous, mais c'est juste pour montrer que c'est un type de jeu qui reste populaire aujourd'hui.
 
-## Option 2: Jeu d'arcade simple dans le browser avec high scores
+## Temps actuel a Lyon, en JavaScript
 
-Un jeu d'arcade simple, genre Breakout, qu'on peut jouer dans le browser, avec une liste de high scores persistante.
+Un page HTML avec du JavaScript (et du CSS si vous voulez) qui montre la temperature actuelle a Lyon, en utilisant l'API de openweathermap.org.
 
-### Client (dans le browser)
+L'utilisateur voit la temperature (en Celsius) et les autres elements du meteo actuel de Lyon dans une page web.
 
-Le joueur peut jouer un jeu d'arcade simple dans le browser. Quand le jeu est terminé il peut entrer son nom pour ajouter son score dans la liste des high scores, qui est affiché.
-
-### Serveur (en Python)
-
-Le serveur sert a gerer les high scores.
+Vous pouvez utiliser [ce lien](http://api.openweathermap.org/data/2.5/find?q=Lyon,fr&units=metric) pour recuperer les données météo.
 
 ### A livrer
 
-- Le code et toutes les donnees.
-- Je peux executer le code moi-meme.
-- Je n'arrive pas a faire planter le code facilement.
-
-(Si vous installez des packages en plus avec pip, dites-moi lesquels.)
+- Le code complet (dans un fichier ZIP, envoyé a jurie@jurie.org).
+- Je peux lancer et regarder la page web moi-meme.
 
 ### Ce que je regarderai
 
-- Est-ce que ca marche.
+- Est-ce que ca marche (dans Firefox et Chrome).
 - Est-ce que vous faites ce que j'ai dit :)
 - Architecture et qualité du code.
 - Qualité > Quantité.
 
 ### Points bonus
 
-- Complexité du jeu.
-- Effets audio et graphiques en JavaScript.
-- Achievements, en plus des high scores.
-- Les tests automatiques.
-- Ca tourne sur un serveur sur l'internet (donnez-moi l'URL dans ce cas-la).
-- On peut tweaker les parametres du jeu dans le browser.
-- Le jeu est multi-joueur (tour par tour est OK).
+- Une page jolie.
+- La page montre plus de données que juste la temperature.
+- Des moyens qui permettent l'utilisateur de parametriser les données affichées (metrique/imperial, lieux différents, etc.)
+- Une solution sans jQuery (mais avec une autre librairie ou completement sans).
+- Un ou des APIs différents pour recuperer les données météo.
 
 ### Astuces
 
-- Je vous conseille d'utiliser l'element HTML canvas pour faire le jeu. Vous pouvez utiliser des librairies JavaScript open source pour faire le rendu etc.
-- N'utilisez pas des generateurs de jeu HTML5 ou des librairies commercielles pour le cote JavaScript.
+- Cette approche pour charger du code Javascript ne marche plus pour une page sans serveur:
+
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+- Nous avons déja fait des choses tres similaires dans le projet blog_sqla et tweaker.
