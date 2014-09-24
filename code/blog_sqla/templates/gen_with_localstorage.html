@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}A very simple blog{% endblock %}
+{% block content %}
+	<div id="posts"></div>
+  	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  	<script src="{{ url_for('static', filename='handlebars-v2.0.0.js') }}"></script>
+{% raw %}
+	<script id="post-template" type="text/x-handlebars-template">
+	<h2><a href="{{ post_url }}">{{ title }}</a></h2>
+	<p>By <a href="{{ author_url }}">{{ author }}</a>, in the category <a href="{{ category_url }}">{{ category }}</a>.</p>
+	<p>{{ content }}</p>
+	</script>
+{% endraw %}
+  	<script src="{{ url_for('static', filename='gen_with_localstorage.js') }}"></script>
+{% endblock %}
