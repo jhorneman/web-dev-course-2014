@@ -9,7 +9,7 @@ layout: default
 
 [Useful links](useful_links.html).
 
-[Les exercises](exercises.html).
+[Les exercices](exercises.html).
 
 
 # Ignore this

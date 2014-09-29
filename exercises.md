@@ -2,11 +2,11 @@
 title: Exercises
 layout: default
 ---
-# Les Exercises
+# Les Exercices
 
 <p style="font-size:larger; color:red">ENVOYEZ VOS FICHIERS ZIP A JURIE@JURIE.ORG LE MATIN DU LUNDI LE 28 SEPTEMBRE</p>
 
-## "Livre dont vous etes êtes le héros", en ligne
+## Exercice 1: "Livre dont vous etes êtes le héros", en ligne
 
 Comme dans les annees 80, un "livre" virtuel avec des paragraphes et des choix qui menent vers des autres paragraphes. L'histoire commence avec le paragraphe de debut et se finit par un paragraphe d'échec ou de victoire.
 
@@ -70,7 +70,7 @@ Ce genre de jeu, ca se joue encore? Oui! Voici quelques examples:
 
 Bien sur, ces sont en partie des jeux commerciaux developpés avec plus de moyens que vous, mais c'est juste pour montrer que c'est un type de jeu qui reste populaire aujourd'hui.
 
-## Temps actuel a Lyon, en JavaScript
+## Exercice 2: Temps actuel a Lyon, en JavaScript
 
 Un page HTML avec du JavaScript (et du CSS si vous voulez) qui montre la temperature actuelle a Lyon, en utilisant l'API de openweathermap.org.
 
