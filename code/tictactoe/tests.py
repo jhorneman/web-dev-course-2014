@@ -28,6 +28,27 @@ class GameStateModelTestCase(unittest.TestCase):
     	gs = GameState.create_from_string("oxoxxoxo ")
     	assert gs.state == GameState.Ongoing
 
+    def test_make_move(self):
+    	gs = GameState()
+    	gs.make_move(0, 0)
+    	assert gs.state == GameState.Ongoing
+
+    def test_make_move_updates_state(self):
+    	gs = GameState.create_from_string(" xoxxoxox")
+    	gs.make_move(0, 0)
+    	assert gs.state == GameState.Player1Won
+
+    def test_make_move_asserts(self):
+    	gs = GameState()
+    	self.assertRaises(AssertionError, gs.make_move, -1, 0)
+    	self.assertRaises(AssertionError, gs.make_move, 0, 3)
+
+    	gs = GameState.create_from_string("oxoxxoxox")
+    	self.assertRaises(AssertionError, gs.make_move, 0, 0)
+
+    	gs = GameState.create_from_string(" xoxxoxox")
+    	self.assertRaises(AssertionError, gs.make_move, 2, 2)
+
 
 if __name__ == '__main__':
     unittest.main()
