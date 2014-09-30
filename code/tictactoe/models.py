@@ -18,7 +18,7 @@ class GameState(object):
 
 	def __init__(self):
 		self.whose_turn_is_it = GameState.Player1
-		self.boards = [
+		self.board = [
 			[GameState.CellEmpty for j in xrange(3)]
 				for i in xrange(3)
 		]
@@ -28,13 +28,13 @@ class GameState(object):
 		assert self.state == GameState.Ongoing
 		assert _x >= 0 and _x < 3
 		assert _y >= 0 and _y < 3
-		assert self.boards[_y][_x] == GameState.CellEmpty
+		assert self.board[_y][_x] == GameState.CellEmpty
 
 		if self.whose_turn_is_it == GameState.Player1:
-			self.boards[_y][_x] = GameState.CellUsedByPlayer1
+			self.board[_y][_x] = GameState.CellUsedByPlayer1
 			self.whose_turn_is_it = GameState.Player2
 		else:
-			self.boards[_y][_x] = GameState.CellUsedByPlayer2
+			self.board[_y][_x] = GameState.CellUsedByPlayer2
 			self.whose_turn_is_it = GameState.Player1
 
 		self.update_state()
@@ -44,42 +44,42 @@ class GameState(object):
 
 		# Check rows
 		for i in xrange(3):
-			v = self.boards[i][0]
+			v = self.board[i][0]
 			if v != GameState.CellEmpty:
-				if self.boards[i][1] == v and \
-				   self.boards[i][2] == v:
+				if self.board[i][1] == v and \
+				   self.board[i][2] == v:
 					self.set_state_based_on_cell(v)
 					return
 
 		# Check columns
 		for i in xrange(3):
-			v = self.boards[0][i]
+			v = self.board[0][i]
 			if v != GameState.CellEmpty:
-				if self.boards[1][i] == v and \
-				   self.boards[2][i] == v:
+				if self.board[1][i] == v and \
+				   self.board[2][i] == v:
 					self.set_state_based_on_cell(v)
 					return
 
 		# Check first diagonal
-		v = self.boards[0][0]
+		v = self.board[0][0]
 		if v != GameState.CellEmpty:
-			if self.boards[1][1] == v and \
-			   self.boards[2][2] == v:
+			if self.board[1][1] == v and \
+			   self.board[2][2] == v:
 				self.set_state_based_on_cell(v)
 				return
 
 		# Check second diagonal
-		v = self.boards[0][2]
+		v = self.board[0][2]
 		if v != GameState.CellEmpty:
-			if self.boards[1][1] == v and \
-			   self.boards[2][0] == v:
+			if self.board[1][1] == v and \
+			   self.board[2][0] == v:
 				self.set_state_based_on_cell(v)
 				return
 
 		# Check if board is full
 		for i in xrange(3):
 			for j in xrange(3):
-				if self.boards[i][j] == GameState.CellEmpty:
+				if self.board[i][j] == GameState.CellEmpty:
 					return
 
 		self.state = GameState.Draw
@@ -98,9 +98,9 @@ class GameState(object):
 		gs = GameState()
 		for i in xrange(9):
 			if init_string[i] == 'x':
-				gs.boards[i // 3][i % 3] = GameState.CellUsedByPlayer1
+				gs.board[i // 3][i % 3] = GameState.CellUsedByPlayer1
 			elif init_string[i] == 'o':
-				gs.boards[i // 3][i % 3] = GameState.CellUsedByPlayer2
+				gs.board[i // 3][i % 3] = GameState.CellUsedByPlayer2
 		gs.update_state()
 		return gs
 

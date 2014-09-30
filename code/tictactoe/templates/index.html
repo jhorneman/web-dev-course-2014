@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<table class="board">
+	{% for y in range(3) %}
+	<tr>
+		{% for x in range(3) %}
+		<td>
+		{% if is_cell_empty(gs, x, y) %}
+			&nbsp;
+		{% else %}
+			{{ cell_contents(gs, x, y)|safe }}
+		{% endif %}
+		</td>
+		{% endfor %}
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
