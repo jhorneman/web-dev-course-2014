@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}Registration form{% endblock %}
+{% block content %}
+<h1>Register a new user</h1>
+<form method="POST" action="{{ url_for('register_full') }}" class="form-horizontal">
+{% if form.errors %}
+    <ul class="form-errors alert alert-danger">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+    	{{ form.name.label(class="col-sm-2 control-label") }}
+    	<div class="col-sm-6">
+	    	{{ form.name(class="form-control", placeholder="Jimmy") }}
+    	</div>
+    </div>
+    <div class="form-group">
+    	{{ form.email_address.label(class="col-sm-2 control-label") }}
+    	<div class="col-sm-6">
+	    	{{ form.email_address(class="form-control", placeholder="jimmy@jimmy.org") }}
+    	</div>
+    </div>
+    <div class="form-group">
+    	{{ form.birthday.label(class="col-sm-2 control-label") }}
+    	<div class="col-sm-6">
+	    	{{ form.birthday(class="form-control", placeholder="25-05-1971") }}
+    	</div>
+    </div>
+    <div class="form-group">
+	    <div class="col-sm-offset-2 col-sm-10">
+    		<button type="submit" class="btn btn-default">Submit</button>
+    	</div>
+    </div>
+</form>
+{% endblock %}

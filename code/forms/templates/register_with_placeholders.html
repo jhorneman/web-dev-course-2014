@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Registration form{% endblock %}
+{% block content %}
+<h1>Register a new user</h1>
+<form method="POST" action="{{ url_for('register_with_placeholders') }}">
+    {{ form.hidden_tag() }}
+	{{ form.name.label() }}
+	{{ form.name(placeholder="Jimmy") }}
+	{{ form.email_address.label() }}
+	{{ form.email_address(placeholder="jimmy@jimmy.org") }}
+	{{ form.birthday.label() }}
+	{{ form.birthday(placeholder="25-05-1971") }}
+	<button type="submit">Submit</button>
+</form>
+{% endblock %}

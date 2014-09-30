@@ -32,6 +32,10 @@
 
 <ul class="buttons">
 	<li><a class="btn btn-default" href="{{ url_for('register_manual') }}">Register a new user (manual)</a></li>
+	<li><a class="btn btn-default" href="{{ url_for('register_minimal') }}">Register a new user (minimal)</a></li>
+	<li><a class="btn btn-default" href="{{ url_for('register_with_placeholders') }}">Register a new user (with placeholders)</a></li>
+	<li><a class="btn btn-default" href="{{ url_for('register_with_errors') }}">Register a new user (with errors)</a></li>
+	<li><a class="btn btn-default" href="{{ url_for('register_full') }}">Register a new user (full)</a></li>
 </ul>
 
 {% endblock %}

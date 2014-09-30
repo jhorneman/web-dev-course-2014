@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Registration form{% endblock %}
+{% block content %}
+<h1>Register a new user</h1>
+<form method="POST" action="{{ url_for('register_minimal') }}">
+    {{ form.hidden_tag() }}
+	{{ form.name.label() }}
+	{{ form.name() }}
+	<br/>
+	{{ form.email_address.label() }}
+	{{ form.email_address() }}
+	<br/>
+	{{ form.birthday.label() }}
+	{{ form.birthday() }}
+	<br/>
+	<button type="submit">Submit</button>
+</form>
+{% endblock %}
