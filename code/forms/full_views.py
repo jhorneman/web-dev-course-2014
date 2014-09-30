@@ -28,7 +28,7 @@ def register_manual():
 def register_minimal():
     form = RegistrationForm()
     if form.validate_on_submit():
-        add_user_from_form(form.name.data, form.email_address.data, form.birthday.data)
+        add_user_from_form(_form.name.data, _form.email_address.data, _form.birthday.data)
         return redirect(url_for('index'))
     return render_template('register_minimal.html', form=form)
 
@@ -37,7 +37,7 @@ def register_minimal():
 def register_with_placeholders():
     form = RegistrationForm()
     if form.validate_on_submit():
-        add_user_from_form(form.name.data, form.email_address.data, form.birthday.data)
+        add_user_from_form(_form.name.data, _form.email_address.data, _form.birthday.data)
         return redirect(url_for('index'))
     return render_template('register_with_placeholders.html', form=form)
 
@@ -46,7 +46,7 @@ def register_with_placeholders():
 def register_with_errors():
     form = RegistrationForm()
     if form.validate_on_submit():
-        add_user_from_form(form.name.data, form.email_address.data, form.birthday.data)
+        add_user_from_form(_form.name.data, _form.email_address.data, _form.birthday.data)
         return redirect(url_for('index'))
     return render_template('register_with_errors.html', form=form)
 
@@ -55,7 +55,7 @@ def register_with_errors():
 def register_full():
     form = RegistrationForm()
     if form.validate_on_submit():
-        add_user_from_form(form.name.data, form.email_address.data, form.birthday.data)
+        add_user_from_form(_form.name.data, _form.email_address.data, _form.birthday.data)
         return redirect(url_for('index'))
     return render_template('register_full.html', form=form)
 

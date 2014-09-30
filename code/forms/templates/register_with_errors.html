@@ -15,10 +15,13 @@
     {{ form.hidden_tag() }}
 	{{ form.name.label() }}
 	{{ form.name(placeholder="Jimmy") }}
+    <br/>
 	{{ form.email_address.label() }}
 	{{ form.email_address(placeholder="jimmy@jimmy.org") }}
+    <br/>
 	{{ form.birthday.label() }}
 	{{ form.birthday(placeholder="25-05-1971") }}
+    <br/>
 	<button type="submit">Submit</button>
 </form>
 {% endblock %}
