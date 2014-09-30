@@ -30,3 +30,10 @@ def board_processor():
 def index():
     global gs
     return render_template('index.html', gs=gs)
+
+
+@app.route('/make_move')
+def make_move():
+    x = request.args.get('x', None)
+    y = request.args.get('y', None)
+    return x + ", " + y
