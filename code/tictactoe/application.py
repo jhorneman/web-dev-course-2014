@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
+from models import GameState
 
 
 app = None
@@ -13,6 +14,7 @@ def create_app():
     import views
 
     import models
+    app.gs = GameState()
 
     DebugToolbarExtension(app)
 

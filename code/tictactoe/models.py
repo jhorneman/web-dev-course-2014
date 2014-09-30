@@ -1,5 +1,4 @@
 
-
 class GameState(object):
 	# Possible states for the entire game
 	Ongoing = 0
@@ -17,6 +16,9 @@ class GameState(object):
 	Player2 = 1
 
 	def __init__(self):
+		self.reset()
+
+	def reset(self):
 		self.whose_turn_is_it = GameState.Player1
 		self.board = [
 			[GameState.CellEmpty for j in xrange(3)]
@@ -95,16 +97,26 @@ class GameState(object):
 		else:
 			assert False
 
-	@staticmethod
-	def create_from_string(_init_string):
+	def is_empty(self):
+		for i in xrange(3):
+			for j in xrange(3):
+				if self.board[i][j] != GameState.CellEmpty:
+					return False
+		return True
+
+	def load_from_string(self, _init_string):
 		init_string = _init_string.lower()
-		gs = GameState()
 		for i in xrange(9):
 			if init_string[i] == 'x':
-				gs.board[i // 3][i % 3] = GameState.CellUsedByPlayer1
+				self.board[i // 3][i % 3] = GameState.CellUsedByPlayer1
 			elif init_string[i] == 'o':
-				gs.board[i // 3][i % 3] = GameState.CellUsedByPlayer2
-		gs.update_state()
+				self.board[i // 3][i % 3] = GameState.CellUsedByPlayer2
+		self.update_state()
+
+	@staticmethod
+	def create_from_string(_init_string):
+		gs = GameState()
+		gs.load_from_string(_init_string)
 		return gs
 
 

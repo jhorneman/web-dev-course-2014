@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
+<h1>Tic Tac Toe</h1>
+<p>{{ game_state_description(gs) }}</p>
 <table class="board">
 	{% for y in range(3) %}
 	<tr>
@@ -16,4 +18,5 @@
 	</tr>
 	{% endfor %}
 </table>
+<a href="{{url_for('reset')}}">Restart the game</a>
 {% endblock %}
