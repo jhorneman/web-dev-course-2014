@@ -1,5 +1,6 @@
 import unittest
 from models import GameState
+from application import create_app
 
 
 class GameStateModelTestCase(unittest.TestCase):
@@ -48,6 +49,21 @@ class GameStateModelTestCase(unittest.TestCase):
 
     	gs = GameState.create_from_string(" xoxxoxox")
     	self.assertRaises(AssertionError, gs.make_move, 2, 2)
+
+
+app = create_app()
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+app.config['TESTING'] = True
+# app.config['WTF_CSRF_ENABLED'] = False
+
+
+class WebTestCase(unittest.TestCase):
+    def setUp(self):
+        self.client = app.test_client()
+
+    def test_index_page(self):
+        rv = self.client.get('/')
+        assert "Tic Tac Toe" in rv.data
 
 
 if __name__ == '__main__':
