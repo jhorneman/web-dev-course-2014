@@ -24,6 +24,9 @@ class GameState(object):
 		]
 		self.update_state()
 
+	def is_ongoing(self):
+		return self.state == GameState.Ongoing
+
 	def make_move(self, _x, _y):
 		assert self.state == GameState.Ongoing
 		assert _x >= 0 and _x < 3

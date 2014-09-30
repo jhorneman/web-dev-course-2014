@@ -3,8 +3,7 @@ from application import app
 from models import GameState
 
 
-# gs = GameState()
-gs = GameState.create_from_string("xo x oxo  ")
+gs = GameState()
 
 
 @app.context_processor
@@ -18,7 +17,7 @@ def board_processor():
         elif _gs.board[_y][_x] == GameState.CellUsedByPlayer2:
             return "O"
         else:
-            return ""
+            return "&nbsp;"
 
     return dict(
         is_cell_empty=is_cell_empty,
@@ -36,4 +35,9 @@ def index():
 def make_move():
     x = request.args.get('x', None)
     y = request.args.get('y', None)
-    return x + ", " + y
+    if x is None or y is None:
+        abort(400)
+
+    global gs
+    gs.make_move(int(x), int(y))
+    return redirect(url_for('index'))
