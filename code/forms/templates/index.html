@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Registration form{% endblock %}
+{% block content %}
+<h1>Forms!</h1>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<h2>Registered users</h2>
+<ul class="users">
+{% for user in users %}
+	<li>
+		{{ user.name }} (<a href="mailto:{{ user.email_address }}">{{ user.email_address }}</a>),
+		{% if user.birthday %}
+		born on {{ user.birthday|datetimeformat('%d-%m-%Y') }},
+		{% else %}
+		no birthday given,
+		{% endif %}
+		registered on {{ user.registered_at|datetimeformat('%d-%m-%Y') }}.
+	</li>
+{% else %}
+	<li>No users found.</li>
+{% endfor %}
+</ul>
+
+<ul class="buttons">
+	<li><a class="btn btn-default" href="{{ url_for('register_manual') }}">Register a new user (manual)</a></li>
+</ul>
+
+{% endblock %}

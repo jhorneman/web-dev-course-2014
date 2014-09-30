@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Registration form{% endblock %}
+{% block content %}
+<h1>Register a new user</h1>
+<form method="POST" action="{{ url_for('register_manual') }}">
+	<label for="name">Your full name</label>
+	<input id="name" type="text" value="" name="name">
+	<br>
+	<label for="email_address">Your email address</label>
+	<input id="email_address" type="email" value="" name="email_address">
+	<br>
+	<label for="birthday">Your birthday</label>
+	<input id="birthday" type="text" value="" name="birthday">
+	<br/>
+	<button type="submit">Submit</button>
+</form>
+{% endblock %}

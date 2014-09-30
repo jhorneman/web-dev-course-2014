@@ -1,0 +1,12 @@
+.users, .buttons {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.buttons li {
+	padding-bottom: .5em;
+}
+
+.form-errors {
+	list-style-type: none;
+}

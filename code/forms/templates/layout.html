@@ -1,0 +1,12 @@
+<html>
+<head>
+	<title>{% block title %}Web dev course{% endblock %}</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+</head>
+<body>
+	<div class="container">
+{% block content %}{% endblock %}
+	</div>
+</body>
+</html>
