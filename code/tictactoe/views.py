@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for, abort, current_app, g, session
+from flask import render_template, redirect, request, url_for, abort, session, flash
 from application import app, db
 from models import GameState
 
@@ -8,9 +8,15 @@ def board_processor():
     def game_state_description(_gs):
         if _gs.state == GameState.Ongoing:
             if _gs.whose_turn_is_it == GameState.Player1:
-                return "It's player 1's turn."
+                if session.get("player_id", None) == GameState.Player1:
+                    return "It's your turn, player 1."
+                else:
+                    return "It's player 1's turn."
             elif _gs.whose_turn_is_it == GameState.Player2:
-                return "It's player 2's turn."
+                if session.get("player_id", None) == GameState.Player2:
+                    return "It's your turn, player 2."
+                else:
+                    return "It's player 2's turn."
             else:
                 return "I don't know whose turn it is!"
         elif _gs.state == GameState.Player1Won:
@@ -33,52 +39,76 @@ def board_processor():
         else:
             return "&nbsp;"
 
+    def is_it_my_turn(_gs):
+        return _gs.whose_turn_is_it == session.get("player_id", None)
+
     return dict(
         game_state_description=game_state_description,
         is_cell_empty=is_cell_empty,
-        cell_contents=cell_contents
+        cell_contents=cell_contents,
+        is_it_my_turn=is_it_my_turn
     )
-
-
-# @app.before_request
-# def get_game_state():
-#     if not hasattr(g, "gs"):
-#         gamestate_id = session.get('gamestate_id', None)
-#         if gamestate_id is None:
-#             gs = GameState()
-#             db.session.add(gs)
-#             db.session.commit()
-#             gamestate_id = gs.id
-#             session["gamestate_id"] = gamestate_id
-#         else:
-#             gs = GameState.query.filter(GameState.id == gamestate_id).first()
-#             if not gs:
-#                 gs = GameState()
-#                 db.session.add(gs)
-#                 db.session.commit()
-#                 gamestate_id = gs.id
-#                 session["gamestate_id"] = gamestate_id
-#         g.gs = gs
 
 
 @app.route('/')
 def index():
+    game_id = session.get('game_id', None)
+    if game_id:
+        gs = GameState.query.get(game_id)
+        if gs:
+            return redirect(url_for('game', game_id=game_id))
+        else:
+            session["game_id"] = None
     return render_template('index.html')
 
 
 @app.route('/new_game')
 def new_game():
     gs = GameState()
+    gs.nr_players = 1
     db.session.add(gs)
     db.session.commit()
     game_id = gs.id
     session["game_id"] = game_id
+    session["player_id"] = GameState.Player1
     return redirect(url_for('game', game_id=game_id))
+
+
+@app.route('/end_game')
+def end_game():
+    session["game_id"] = None
+    session["player_id"] = None
+    return redirect(url_for('index'))
 
 
 @app.route('/game/<int:game_id>')
 def game(game_id):
     gs = GameState.query.get_or_404(game_id)
+
+    # Possible cases:
+    # - I am the player of this game => play
+    # - I am the player of no game
+    #   - and this game has 1 player => join this game
+    #   - else => index
+    # - I am not a player of this game => index
+
+    game_id_from_session = session.get("game_id", None)
+    if game_id_from_session is None:
+        assert gs.nr_players != 0
+        if gs.nr_players == 1:
+            gs.nr_players = 2
+            db.session.commit()
+            session["game_id"] = game_id
+            session["player_id"] = GameState.Player2
+            flash("You joined the game.")
+        else:
+            flash("This game already has two players.")
+            return redirect(url_for('index'))
+
+    elif game_id_from_session != game_id:
+        flash("This is not your game.")
+        return redirect(url_for('index'))
+
     return render_template('game.html', gs=gs)
 
 
@@ -97,9 +127,16 @@ def make_move(game_id):
     except ValueError:
         abort(400)
 
-    if x >= 0 and x < 3 and y >= 0 and y < 3:
-        gs.make_move(x, y)
-        db.session.commit()
-        return redirect(url_for('game', game_id=game_id))
-    else:
+    if x < 0 or x >= 3 or y < 0 or y >= 3:
         abort(400)
+
+    game_id_from_session = session.get("game_id", None)
+    if game_id_from_session != game_id:
+        abort(400)
+
+    if gs.whose_turn_is_it != session.get("player_id", None):
+        abort(400)
+
+    gs.make_move(x, y)
+    db.session.commit()
+    return redirect(url_for('game', game_id=game_id))

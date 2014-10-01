@@ -1,12 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Tic Tac Toe</h1>
 <p>{{ game_state_description(gs) }}</p>
 <table class="board">
 	{% for y in range(3) %}
 	<tr>
 		{% for x in range(3) %}
-		{% if gs.is_ongoing() and is_cell_empty(gs, x, y) %}
+		{% if is_it_my_turn(gs) and gs.is_ongoing() and is_cell_empty(gs, x, y) %}
 		<td class="empty" onclick="window.location.href = '{{url_for('make_move', game_id=gs.id, x=x, y=y)}}';">
 			&nbsp;
 		{% else %}
@@ -18,4 +17,7 @@
 	</tr>
 	{% endfor %}
 </table>
+{% if not gs.is_ongoing() %}
+<a href="{{url_for('end_game')}}">End the game.</a>
+{% endif %}
 {% endblock %}

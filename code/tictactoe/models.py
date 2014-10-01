@@ -19,6 +19,7 @@ class GameState(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
+    nr_players = db.Column(db.Integer)
     whose_turn_is_it = db.Column(db.Integer)
     board = db.Column(db.String)    # TODO: Find a way to limit this to 9 characters
     state = db.Column(db.Integer)
@@ -28,6 +29,7 @@ class GameState(db.Model):
         self.reset()
 
     def reset(self):
+        self.nr_players = 0
         self.whose_turn_is_it = GameState.Player1
         self.board = "         "
         self.update_state()
