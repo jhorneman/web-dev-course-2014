@@ -51,7 +51,13 @@ def get_game_state():
             gamestate_id = gs.id
             session["gamestate_id"] = gamestate_id
         else:
-            gs = GameState.query.get_or_404(gamestate_id)
+            gs = GameState.query.filter(GameState.id == gamestate_id).first()
+            if not gs:
+                gs = GameState()
+                db.session.add(gs)
+                db.session.commit()
+                gamestate_id = gs.id
+                session["gamestate_id"] = gamestate_id
         g.gs = gs
 
 
