@@ -1,9 +1,10 @@
 from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy
 from flask_debugtoolbar import DebugToolbarExtension
-from models import GameState
 
 
 app = None
+db = SQLAlchemy()
 
 
 def create_app():
@@ -13,8 +14,11 @@ def create_app():
 
     import views
 
+    global db
+    db.init_app(app)
+    app.db = db
+
     import models
-    app.gs = GameState()
 
     DebugToolbarExtension(app)
 

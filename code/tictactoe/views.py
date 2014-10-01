@@ -1,5 +1,5 @@
-from flask import render_template, redirect, request, url_for, abort, current_app
-from application import app
+from flask import render_template, redirect, request, url_for, abort, current_app, g, session
+from application import app, db
 from models import GameState
 
 
@@ -23,12 +23,12 @@ def board_processor():
             return "Unknown state!"
 
     def is_cell_empty(_gs, _x, _y):
-        return _gs.board[_y][_x] == GameState.CellEmpty
+        return _gs.get(_x, _y) == GameState.CellEmpty
 
     def cell_contents(_gs, _x, _y):
-        if _gs.board[_y][_x] == GameState.CellUsedByPlayer1:
+        if _gs.get(_x, _y) == GameState.CellUsedByPlayer1:
             return "X"
-        elif _gs.board[_y][_x] == GameState.CellUsedByPlayer2:
+        elif _gs.get(_x, _y) == GameState.CellUsedByPlayer2:
             return "O"
         else:
             return "&nbsp;"
@@ -40,9 +40,24 @@ def board_processor():
     )
 
 
+@app.before_request
+def get_game_state():
+    if not hasattr(g, "gs"):
+        gamestate_id = session.get('gamestate_id', None)
+        if gamestate_id is None:
+            gs = GameState()
+            db.session.add(gs)
+            db.session.commit()
+            gamestate_id = gs.id
+            session["gamestate_id"] = gamestate_id
+        else:
+            gs = GameState.query.get_or_404(gamestate_id)
+        g.gs = gs
+
+
 @app.route('/')
 def index():
-    return render_template('index.html', gs=current_app.gs)
+    return render_template('index.html', gs=g.gs)
 
 
 @app.route('/make_move')
@@ -52,11 +67,22 @@ def make_move():
     if x is None or y is None:
         abort(400)
 
-    current_app.gs.make_move(int(x), int(y))
-    return redirect(url_for('index'))
+    try:
+        x = int(x)
+        y = int(y)
+    except ValueError:
+        abort(400)
+
+    if x >= 0 and x < 3 and y >= 0 and y < 3:
+        g.gs.make_move(x, y)
+        db.session.commit()
+        return redirect(url_for('index'))
+    else:
+        abort(400)
 
 
 @app.route('/reset')
 def reset():
-    current_app.gs.reset()
+    g.gs.reset()
+    db.session.commit()
     return redirect(url_for('index'))

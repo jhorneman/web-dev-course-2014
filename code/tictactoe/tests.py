@@ -69,7 +69,7 @@ class WebTestCase(unittest.TestCase):
     def test_make_move_route(self):
         rv = self.client.get('/make_move?x=0&y=0')
         assert rv.status_code == 302
-        assert self.gs.board[0][0] == GameState.CellUsedByPlayer1
+        assert self.gs.get(0, 0) == GameState.CellUsedByPlayer1
 
     def test_reset_route(self):
         self.gs.load_from_string(" xoxxoxox")
