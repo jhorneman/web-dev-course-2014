@@ -40,34 +40,52 @@ def board_processor():
     )
 
 
-@app.before_request
-def get_game_state():
-    if not hasattr(g, "gs"):
-        gamestate_id = session.get('gamestate_id', None)
-        if gamestate_id is None:
-            gs = GameState()
-            db.session.add(gs)
-            db.session.commit()
-            gamestate_id = gs.id
-            session["gamestate_id"] = gamestate_id
-        else:
-            gs = GameState.query.filter(GameState.id == gamestate_id).first()
-            if not gs:
-                gs = GameState()
-                db.session.add(gs)
-                db.session.commit()
-                gamestate_id = gs.id
-                session["gamestate_id"] = gamestate_id
-        g.gs = gs
+# @app.before_request
+# def get_game_state():
+#     if not hasattr(g, "gs"):
+#         gamestate_id = session.get('gamestate_id', None)
+#         if gamestate_id is None:
+#             gs = GameState()
+#             db.session.add(gs)
+#             db.session.commit()
+#             gamestate_id = gs.id
+#             session["gamestate_id"] = gamestate_id
+#         else:
+#             gs = GameState.query.filter(GameState.id == gamestate_id).first()
+#             if not gs:
+#                 gs = GameState()
+#                 db.session.add(gs)
+#                 db.session.commit()
+#                 gamestate_id = gs.id
+#                 session["gamestate_id"] = gamestate_id
+#         g.gs = gs
 
 
 @app.route('/')
 def index():
-    return render_template('index.html', gs=g.gs)
+    return render_template('index.html')
 
 
-@app.route('/make_move')
-def make_move():
+@app.route('/new_game')
+def new_game():
+    gs = GameState()
+    db.session.add(gs)
+    db.session.commit()
+    game_id = gs.id
+    session["game_id"] = game_id
+    return redirect(url_for('game', game_id=game_id))
+
+
+@app.route('/game/<int:game_id>')
+def game(game_id):
+    gs = GameState.query.get_or_404(game_id)
+    return render_template('game.html', gs=gs)
+
+
+@app.route('/game/<int:game_id>/make_move')
+def make_move(game_id):
+    gs = GameState.query.get_or_404(game_id)
+
     x = request.args.get('x', None)
     y = request.args.get('y', None)
     if x is None or y is None:
@@ -80,15 +98,8 @@ def make_move():
         abort(400)
 
     if x >= 0 and x < 3 and y >= 0 and y < 3:
-        g.gs.make_move(x, y)
+        gs.make_move(x, y)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('game', game_id=game_id))
     else:
         abort(400)
-
-
-@app.route('/reset')
-def reset():
-    g.gs.reset()
-    db.session.commit()
-    return redirect(url_for('index'))
