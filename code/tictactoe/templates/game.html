@@ -17,7 +17,17 @@
 	</tr>
 	{% endfor %}
 </table>
-{% if not gs.is_ongoing() %}
+{% if gs.is_ongoing() %}
+<script>
+{% if is_it_my_turn %}
+var itIsMyTurn = true;
+{% else %}
+var itIsMyTurn = false;
+{% endif %}
+</script>
+{% else %}
 <a href="{{url_for('end_game')}}">End the game.</a>
 {% endif %}
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="{{ url_for('static', filename='game.js') }}"></script>
 {% endblock %}

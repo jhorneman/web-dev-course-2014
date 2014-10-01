@@ -1,4 +1,5 @@
-from flask import render_template, redirect, request, url_for, abort, session, flash
+from flask import render_template, redirect, request, url_for, abort,\
+    session, flash, jsonify
 from application import app, db
 from models import GameState
 
@@ -19,12 +20,22 @@ def board_processor():
                     return "It's player 2's turn."
             else:
                 return "I don't know whose turn it is!"
+
         elif _gs.state == GameState.Player1Won:
-            return "Player 1 has won!"
+            if session.get("player_id", None) == GameState.Player1:
+                return "You have won!"
+            else:
+                return "Player 1 has won!"
+
         elif _gs.state == GameState.Player2Won:
-            return "Player 2 has won!"
+            if session.get("player_id", None) == GameState.Player2:
+                return "You have won!"
+            else:
+                return "Player 2 has won!"
+
         elif _gs.state == GameState.Draw:
             return "Draw!"
+
         else:
             return "Unknown state!"
 
@@ -75,6 +86,20 @@ def end_game():
     session["game_id"] = None
     session["player_id"] = None
     return redirect(url_for('index'))
+
+
+@app.route('/api/is_it_my_turn_yet')
+def is_it_my_turn_yet():
+    result = "error"
+    game_id_from_session = session.get("game_id", None)
+    if game_id_from_session:
+        gs = GameState.query.get(game_id_from_session)
+        if gs:
+            if gs.whose_turn_is_it == session.get("player_id", None):
+                result = "yes"
+            else:
+                result = "no"
+    return jsonify({"result": result})
 
 
 @app.route('/game/<int:game_id>')
