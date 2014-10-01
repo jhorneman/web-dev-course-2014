@@ -39,14 +39,10 @@ def board_processor():
         else:
             return "&nbsp;"
 
-    def is_it_my_turn(_gs):
-        return _gs.whose_turn_is_it == session.get("player_id", None)
-
     return dict(
         game_state_description=game_state_description,
         is_cell_empty=is_cell_empty,
-        cell_contents=cell_contents,
-        is_it_my_turn=is_it_my_turn
+        cell_contents=cell_contents
     )
 
 
@@ -109,7 +105,9 @@ def game(game_id):
         flash("This is not your game.")
         return redirect(url_for('index'))
 
-    return render_template('game.html', gs=gs)
+    is_it_my_turn = gs.whose_turn_is_it == session.get("player_id", None)
+
+    return render_template('game.html', gs=gs, is_it_my_turn=is_it_my_turn)
 
 
 @app.route('/game/<int:game_id>/make_move')
