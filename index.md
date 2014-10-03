@@ -11,6 +11,8 @@ layout: default
 
 [Les exercices](exercises.html).
 
+[Les leçons](lessons.html).
+
 
 # Ignore this
 
